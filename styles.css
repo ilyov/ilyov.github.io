@@ -240,3 +240,19 @@ body {
         grid-column: span 2;
     }
 }
+/* Центрирование вводного текста */
+.experience-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* Исправление опечаток в списке */
+.experience-list li:nth-child(9) {
+    list-style: none;
+    padding-left: 1.5rem;
+}
+.experience-list li:nth-child(9)::before {
+    content: "-";
+    left: 0;
+}
