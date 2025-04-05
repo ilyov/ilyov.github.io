@@ -203,3 +203,40 @@ body {
     padding: 4rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+/* Стили для секции Опыта */
+.experience-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.experience-list {
+    list-style: none;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.5;
+}
+
+.experience-list li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 700;
+}
+
+@media (min-width: 768px) {
+    .experience-content {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+    
+    .experience-list {
+        grid-column: span 2;
+    }
+}
