@@ -1,69 +1,641 @@
+<!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ГеоРу | Геологические изыскания</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <!-- Шапка с навигацией -->
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo-area">
-                        <div class="logo">ГеоРу | Инженерные изыскания</div>
-                        <div class="sro-number">Регистрационный номер члена саморегулируемой организации И-033-002369008010-1624</div>
-                    </div>
-                    <nav class="nav">
-                        <a href="#services" class="nav-link">Услуги</a>
-                        <a href="#experience" class="nav-link">Опыт</a>
-                        <a href="#certificate" class="nav-link">Свидетельство</a>
-                        <a href="#contacts" class="nav-link">Контакты</a>
-                    </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГеоРу | Инженерные изыскания</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #0A1F3D;
+            --orange: #FF6B35;
+            --white: #FFFFFF;
+            --text: #E0E0E0;
+            --light-blue: #1A3A5F;
+            --nav-gap: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--dark-blue);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1230px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Шапка */
+        .header {
+            background: var(--dark-blue);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .sro-number {
+            font-size: 12px;
+            color: var(--text);
+            margin-top: 5px;
+            max-width: 400px;
+        }
+
+        /* Навигация */
+        .nav {
+            display: flex;
+            gap: var(--nav-gap);
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--orange);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Герой-баннер */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(10, 31, 61, 0.7), rgba(10, 31, 61, 0.7)), url('https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?ixlib=rb-4.0.3') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn:hover {
+            background: #e05a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Секции */
+        .section {
+            padding: 4rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-card h3 {
+            padding: 1rem 1.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            padding: 0.5rem 1.5rem 1.5rem;
+        }
+
+        /* О компании */
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Этапы работы */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--orange);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Преимущества */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .advantage-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .advantage-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Опыт */
+        .experience-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .experience-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            font-size: 1.1rem;
+        }
+
+        .experience-list {
+            list-style: none;
+            padding-left: 1.5rem;
+            margin: 0 auto;
+            max-width: 800px;
+            font-size: 1.1rem;
+        }
+
+        .experience-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .experience-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        .experience-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .experience-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .experience-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Лицензии */
+        .certificate-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .certificate-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .certificate-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Контакты */
+        #contacts {
+            background: #06152B;
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .requisites {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .requisites p {
+            margin-bottom: 0.8rem;
+        }
+
+        .map {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .section {
+                padding: 2rem 0;
+                min-height: auto;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .requisites {
+                padding: 1.5rem;
+                font-size: 13px;
+            }
+            
+            .experience-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav {
+                width: 100%;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .logo-area {
+                align-items: center;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .sro-number {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+            
+            .requisites {
+                padding: 1rem;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с навигацией -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-area">
+                    <div class="logo">ГеоРу | Инженерные изыскания</div>
+                    <div class="sro-number">Регистрационный номер члена саморегулируемой организации И-033-002369008010-1624</div>
                 </div>
+                <nav class="nav">
+                    <a href="#services" class="nav-link">Услуги</a>
+                    <a href="#about" class="nav-link">О компании</a>
+                    <a href="#experience" class="nav-link">Опыт</a>
+                    <a href="#certificate" class="nav-link">Лицензии</a>
+                    <a href="#contacts" class="nav-link">Контакты</a>
+                </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
     <!-- Основной контент -->
     <main>
+        <!-- Герой-баннер -->
+        <section class="hero">
+            <div class="container">
+                <h1>Профессиональные геологические изыскания</h1>
+                <p>Полный комплекс услуг для строительства и проектирования</p>
+                <a href="#contacts" class="btn">Заказать консультацию</a>
+            </div>
+        </section>
+
         <!-- Секция "Услуги" -->
         <section id="services" class="section">
             <div class="container">
                 <h2 class="section-title">Услуги</h2>
                 <div class="services-grid">
-                    <!-- Первые 5 услуг в карточках -->
                     <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3556e?ixlib=rb-4.0.3" alt="Инженерно-геологические изыскания" class="service-img">
                         <h3>Инженерно-геологические изыскания</h3>
                         <p>Изучение грунтов для проектирования фундаментов и оценки рисков.</p>
                     </div>
                     <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3" alt="Инженерно-геофизические изыскания" class="service-img">
                         <h3>Инженерно-геофизические изыскания</h3>
                         <p>Анализ подземных коммуникаций, карстовых полостей и других геофизических особенностей.</p>
                     </div>
                     <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1508166466925-3251b5c0c8c0?ixlib=rb-4.0.3" alt="Инженерно-геодезические изыскания" class="service-img">
                         <h3>Инженерно-геодезические изыскания</h3>
                         <p>Топографическая съемка и создание геодезических планов для строительства.</p>
                     </div>
                     <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3" alt="Инженерно-экологические изыскания" class="service-img">
                         <h3>Инженерно-экологические изыскания</h3>
                         <p>Оценка экологического состояния территории перед началом строительных работ.</p>
                     </div>
                     <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-4.0.3" alt="Инженерно-гидрометеорологические изыскания" class="service-img">
                         <h3>Инженерно-гидрометеорологические изыскания</h3>
                         <p>Исследование водных ресурсов и климатических условий для проектирования.</p>
                     </div>
                 </div>
             </div>
         </section>
-        
+
+        <!-- Секция "О компании" -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">О компании</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>ООО «ГЕОРУ» — профессиональная компания в области инженерных изысканий. Наша команда состоит из высококвалифицированных специалистов с многолетним опытом работы на крупнейших объектах России.</p>
+                        <p>Мы используем современное оборудование и методики, что позволяет нам гарантировать высокое качество работ и соблюдение сроков. Наша миссия - обеспечивать безопасность строительства через точные геологические исследования.</p>
+                        <p>С 2010 года мы успешно реализовали более 500 проектов различной сложности. Наши клиенты - крупнейшие строительные компании и государственные организации.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3" alt="Наша команда">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Этапы работы" -->
+        <section id="steps" class="section">
+            <div class="container">
+                <h2 class="section-title">Этапы работы</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Заявка</h3>
+                        <p>Вы оставляете заявку на сайте или по телефону</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Консультация</h3>
+                        <p>Наш специалист уточняет детали и формирует техническое задание</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Договор</h3>
+                        <p>Заключаем договор и согласовываем сроки</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Выполнение работ</h3>
+                        <p>Проводим необходимые изыскания и исследования</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <h3>Отчет</h3>
+                        <p>Подготавливаем и передаем технический отчет</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Преимущества" -->
+        <section id="advantages" class="section">
+            <div class="container">
+                <h2 class="section-title">Наши преимущества</h2>
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">✅</div>
+                        <h3>Опыт более 15 лет</h3>
+                        <p>Работаем на рынке инженерных изысканий с 2010 года</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">⏱️</div>
+                        <h3>Соблюдение сроков</h3>
+                        <p>Гарантируем выполнение работ в установленные договором сроки</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">📊</div>
+                        <h3>Современное оборудование</h3>
+                        <p>Используем только профессиональную технику последнего поколения</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">👥</div>
+                        <h3>Квалифицированные специалисты</h3>
+                        <p>В нашем коллективе работают эксперты с профильным образованием и большим опытом</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Секция "Опыт" -->
         <section id="experience" class="section">
             <div class="container">
                 <h2 class="section-title">Опыт</h2>
                 <div class="experience-content">
                     <div class="experience-intro">
-                    <p>Сотрудники ООО «ГЕОРУ» принимали участие в выполнении инженерных изысканий для строительства следующих объектов:</p>
+                        <p>Сотрудники ООО «ГЕОРУ» принимали участие в выполнении инженерных изысканий для строительства следующих объектов:</p>
                     </div>
                     <ul class="experience-list">
                         <li>Керченский мост</li>
@@ -83,23 +655,42 @@
                         <li>Заводы Coca-Cola, Тагаз, Тагмет, Тантк им.Г.М.Бериева, Красный котельщик, Нэвз</li>
                         <li>Гипермаркеты Мега, Metro, OBI, IKEA, Leroy Merlin, Ашан, Лента, О`Кей, Золотой Вавилон, и другие</li>
                     </ul>
+                    <div class="experience-gallery">
+                        <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e7bd?ixlib=rb-4.0.3" alt="Проект Керченский мост">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3" alt="Проект Олимпиада-2014">
+                        <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3" alt="Проект газопровод">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Секция "Свидетельство" -->
+        <!-- Секция "Лицензии" -->
         <section id="certificate" class="section">
             <div class="container">
-                <h2 class="section-title">Свидетельство о допуске</h2>
-                <div class="content">
-                    <img src="certificate.jpg" alt="Свидетельство СРО" style="max-width: 100%; border-radius: 10px;">
-                    <p>Действующее свидетельство СРО-Г-12345 от 01.01.2023 г.</p>
+                <h2 class="section-title">Лицензии и свидетельства</h2>
+                <div class="certificate-gallery">
+                    <div class="certificate-item">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3" alt="Свидетельство СРО">
+                    </div>
+                    <div class="certificate-item">
+                        <img src="https://images.unsplash.com/photo-1622542796254-5b9c46ab0d2f?ixlib=rb-4.0.3" alt="Лицензия">
+                    </div>
+                    <div class="certificate-item">
+                        <img src="https://images.unsplash.com/photo-1600857062241-98c0cac7100d?ixlib=rb-4.0.3" alt="Аттестат">
+                    </div>
+                    <div class="certificate-item">
+                        <img src="https://images.unsplash.com/photo-1618517351616-38d9d94e44c4?ixlib=rb-4.0.3" alt="Допуск">
+                    </div>
                 </div>
             </div>
         </section>
-     
+
         <!-- Секция "Контакты" -->
         <section id="contacts" class="section">
+            <div class="container">
+                <h2 class="section-title">Контакты</h2>
+                <div class="requisites">
+                    <section id="contacts" class="section">
             <div class="container">
                 <h2 class="section-title">Контакты</h2>
                 <div class="requisites">
@@ -107,6 +698,9 @@
                     <p>Адрес: 625032 Тюменская обл., г. Тюмень, ул. Тимирязева, д.10, оф. 11
                     <br>Телефон: +79222603732 </p>
                     <p><strong>E-mail:</strong> rugeo@inbox.ru</p>
+                </div>
+                <div class="map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3e4c...&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true" width="100%" height="400" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
