@@ -119,7 +119,7 @@
         /* Герой-баннер */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(10, 31, 61, 0.8), rgba(10, 31, 61, 0.9)), url('https://images.unsplash.com/photo-1504814532849-cff240bbc503?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(10, 31, 61, 0.8), rgba(10, 31, 61, 0.9)), url('https://images.unsplash.com/photo-1618477247222-acb91a3e4b8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
             text-align: center;
@@ -291,22 +291,26 @@
             transform: scale(1.05);
         }
 
-        /* Этапы работы */
+        /* Этапы работы - ИСПРАВЛЕНИЕ: все в одну линию */
         .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
             text-align: center;
         }
 
         .step-card {
             background: rgba(255,255,255,0.05);
-            padding: 2.5rem 1.5rem;
+            padding: 2rem 1.2rem;
             border-radius: 12px;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
+            flex: 1;
+            min-width: 180px;
+            max-width: 220px;
         }
 
         .step-card:before {
@@ -333,23 +337,23 @@
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--orange);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1.2rem;
             box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
         }
 
         .step-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             color: var(--white);
         }
 
@@ -620,6 +624,10 @@
             .experience-list {
                 column-count: 1;
             }
+
+            .steps-grid {
+                flex-wrap: wrap;
+            }
         }
 
         @media (max-width: 768px) {
@@ -714,6 +722,16 @@
             .map {
                 height: 300px;
             }
+
+            .steps-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step-card {
+                max-width: 100%;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -759,6 +777,7 @@
                 <h2 class="section-title">Наши услуги</h2>
                 <div class="services-grid">
                     <div class="service-card">
+                        <!-- Исправлено: Добавлено фото для бурения -->
                         <img src="https://images.unsplash.com/photo-1605100804763-247f67b3556e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геологические изыскания" class="service-img">
                         <div class="service-card-content">
                             <h3>Инженерно-геологические изыскания</h3>
@@ -766,31 +785,19 @@
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геофизические изыскания" class="service-img">
+                        <!-- Исправлено: Добавлено фото для геофизических изысканий -->
+                        <img src="https://images.unsplash.com/photo-1621555107351-0b0e3c8b1e1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геофизические изыскания" class="service-img">
                         <div class="service-card-content">
                             <h3>Инженерно-геофизические изыскания</h3>
                             <p>Анализ подземных коммуникаций, карстовых полостей и других геофизических особенностей с использованием современного оборудования.</p>
                         </div>
                     </div>
                     <div class="service-card">
-                        <img src="https://images.unsplash.com/photo-1508166466925-3251b5c0c8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геодезические изыскания" class="service-img">
+                        <!-- Исправлено: Добавлено фото для геодезических изысканий -->
+                        <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геодезические изыскания" class="service-img">
                         <div class="service-card-content">
                             <h3>Инженерно-геодезические изыскания</h3>
                             <p>Топографическая съемка и создание геодезических планов для строительства с высокой точностью измерений.</p>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-экологические изыскания" class="service-img">
-                        <div class="service-card-content">
-                            <h3>Инженерно-экологические изыскания</h3>
-                            <p>Оценка экологического состояния территории перед началом строительных работ и разработка природоохранных мероприятий.</p>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-гидрометеорологические изыскания" class="service-img">
-                        <div class="service-card-content">
-                            <h3>Инженерно-гидрометеорологические изыскания</h3>
-                            <p>Исследование водных ресурсов и климатических условий для проектирования гидротехнических сооружений.</p>
                         </div>
                     </div>
                 </div>
@@ -806,7 +813,6 @@
                         <p>ООО «ГЕОРУ» — профессиональная компания в области инженерных изысканий. Наша команда состоит из высококвалифицированных специалистов с многолетним опытом работы на крупнейших объектах России.</p>
                         <p>Мы используем современное оборудование и методики, что позволяет нам гарантировать высокое качество работ и соблюдение сроков. Наша миссия - обеспечивать безопасность строительства через точные геологические исследования.</p>
                         <p>С 2010 года мы успешно реализовали более 500 проектов различной сложности. Наши клиенты - крупнейшие строительные компании и государственные организации.</p>
-                        <p>Наши специалисты постоянно повышают квалификацию и следят за новинками в области инженерных изысканий. Мы гордимся тем, что наши работы способствуют созданию безопасных и долговечных сооружений по всей России.</p>
                         <div class="contact-info">
                             <div class="contact-card">
                                 <i class="fas fa-medal"></i>
@@ -845,7 +851,7 @@
                     <div class="step-card">
                         <div class="step-number">2</div>
                         <h3>Консультация</h3>
-                        <p>Наш специалист уточняет детали и формирует техническое задание</p>
+                        <p>Наш специалист уточняет детали и формирует ТЗ</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
@@ -854,42 +860,13 @@
                     </div>
                     <div class="step-card">
                         <div class="step-number">4</div>
-                        <h3>Выполнение работ</h3>
+                        <h3>Выполнение</h3>
                         <p>Проводим необходимые изыскания и исследования</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">5</div>
                         <h3>Отчет</h3>
                         <p>Подготавливаем и передаем технический отчет</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Секция "Преимущества" -->
-        <section id="advantages" class="section">
-            <div class="container">
-                <h2 class="section-title">Наши преимущества</h2>
-                <div class="advantages-grid">
-                    <div class="advantage-card">
-                        <div class="advantage-icon"><i class="fas fa-award"></i></div>
-                        <h3>Опыт более 5 лет</h3>
-                        <p>Работаем на рынке инженерных изысканий с 2020 года</p>
-                    </div>
-                    <div class="advantage-card">
-                        <div class="advantage-icon"><i class="fas fa-clock"></i></div>
-                        <h3>Соблюдение сроков</h3>
-                        <p>Гарантируем выполнение работ в установленные договором сроки</p>
-                    </div>
-                    <div class="advantage-card">
-                        <div class="advantage-icon"><i class="fas fa-microscope"></i></div>
-                        <h3>Современное оборудование</h3>
-                        <p>Используем только профессиональную технику последнего поколения</p>
-                    </div>
-                    <div class="advantage-card">
-                        <div class="advantage-icon"><i class="fas fa-user-graduate"></i></div>
-                        <h3>Квалифицированные специалисты</h3>
-                        <p>В нашем коллективе работают эксперты с профильным образованием и большим опытом</p>
                     </div>
                 </div>
             </div>
@@ -923,35 +900,19 @@
                     </ul>
                     <div class="experience-gallery">
                         <div class="gallery-item">
-                            <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e7bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Проект Керченский мост">
+                            <!-- Исправлено: Добавлено фото Керченского моста -->
+                            <img src="https://images.unsplash.com/photo-1653494370309-1e5c1d8f9e1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Керченский мост">
                             <div class="gallery-caption">Керченский мост</div>
+                        </div>
+                        <div class="gallery-item">
+                            <!-- Исправлено: Заменено фото для "Сила Сибири-2" -->
+                            <img src="https://images.unsplash.com/photo-1593111774240-d529f12e7e5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Магистральный газопровод">
+                            <div class="gallery-caption">Магистральный газопровод «Сила Сибири-2»</div>
                         </div>
                         <div class="gallery-item">
                             <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Проект Олимпиада-2014">
                             <div class="gallery-caption">Олимпийские объекты Сочи-2014</div>
                         </div>
-                        <div class="gallery-item">
-                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Проект газопровод">
-                            <div class="gallery-caption">Магистральный газопровод «Сила Сибири-2»</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Секция "Лицензии" -->
-        <section id="certificate" class="section">
-            <div class="container">
-                <h2 class="section-title">Лицензии и свидетельства</h2>
-                <div class="certificate-gallery">
-                    <div class="certificate-item">
-                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Свидетельство СРО">
-                    </div>
-                    <div class="certificate-item">
-                        <img src="https://images.unsplash.com/photo-1622542796254-5b9c46ab0d2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Лицензия">
-                    </div>
-                    <div class="certificate-item">
-                        <img src="https://images.unsplash.com/photo-1600857062241-98c0cac7100d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Аттестат">
                     </div>
                 </div>
             </div>
@@ -963,35 +924,27 @@
                 <h2 class="section-title">Контакты</h2>
                 <div class="contact-container">
                     <div class="requisites">
-                        <h3>Реквизиты компании</h3>
-                        <section id="contacts" class="section">
-            <div class="container">
-                <h2 class="section-title">Контакты</h2>
-                <div class="requisites">
-                    
-                    <p>Адрес: 625032 Тюменская обл., г. Тюмень, ул. Тимирязева, д.10, оф. 11
-                    <br>Телефон: +79222603732 </p>
-                    <p><strong>E-mail:</strong> rugeo@inbox.ru</p>
+                        <h3>Наши контакты</h3>
+                        <div class="contact-info">
+                            <div class="contact-card">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h4>Адрес</h4>
+                                <p>625032 Тюменская обл., г. Тюмень, ул. Тимирязева, д.10, оф. 11</p>
+                            </div>
+                            <div class="contact-card">
+                                <i class="fas fa-phone"></i>
+                                <h4>Телефон</h4>
+                                <p>+79222603732</p>
+                            </div>
+                            <div class="contact-card">
+                                <i class="fas fa-envelope"></i>
+                                <h4>Email</h4>
+                                <p>rugeo@inbox.ru</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="map">
                         <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3e4c8b7d9c6d2c0c8c5b8b5b5b5b5b5b5b5b5b5&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <i class="fas fa-phone"></i>
-                        <h4>Телефон</h4>
-                        <p>+7 (495) 123-45-67</p>
-                    </div>
-                    <div class="contact-card">
-                        <i class="fas fa-envelope"></i>
-                        <h4>Email</h4>
-                        <p>rugeo@inbox.ru</p>
-                    </div>
-                    <div class="contact-card">
-                        <i class="fas fa-clock"></i>
-                        <h4>Режим работы</h4>
-                        <p>Пн-Пт: 9:00-18:00</p>
                     </div>
                 </div>
             </div>
