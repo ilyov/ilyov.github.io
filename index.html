@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ГеоРу | Инженерные изыскания</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>ГеоРу | Профессиональные инженерные изыскания</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <style>
         :root {
             --dark-blue: #0A1F3D;
             --orange: #FF6B35;
+            --light-orange: #FF8C5A;
             --white: #FFFFFF;
-            --text: #E0E0E0;
+            --light-gray: #F5F7FA;
+            --text: #333333;
             --light-blue: #1A3A5F;
-            --nav-gap: 2rem;
+            --nav-gap: 2.5rem;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * {
@@ -25,28 +30,104 @@
         }
 
         body {
-            background: var(--dark-blue);
+            background: var(--light-gray);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            font-size: 18px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .container {
-            max-width: 1230px;
+            max-width: 1280px;
             width: 100%;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 18px;
+            box-shadow: var(--shadow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--light-orange);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 42px;
+            color: var(--dark-blue);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: var(--orange);
+            border-radius: 5px;
+        }
+
+        .text-center {
+            text-align: center;
         }
 
         /* Шапка */
         .header {
             background: var(--dark-blue);
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
         .header-content {
@@ -55,29 +136,33 @@
             align-items: center;
         }
 
-        .logo-area {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+            color: var(--orange);
+        }
+
+        .logo-text {
             display: flex;
             flex-direction: column;
         }
 
-        .logo {
+        .logo-title {
             font-size: 24px;
             font-weight: 700;
-            color: var(--orange);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--white);
+            line-height: 1.2;
         }
 
-        .logo i {
-            font-size: 28px;
-        }
-
-        .sro-number {
-            font-size: 12px;
-            color: var(--text);
+        .logo-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
             margin-top: 5px;
-            max-width: 400px;
         }
 
         /* Навигация */
@@ -87,196 +172,226 @@
         }
 
         .nav-link {
-            color: var(--text);
+            color: var(--white);
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            padding: 8px 0;
             position: relative;
             font-weight: 500;
+            font-size: 18px;
+            transition: var(--transition);
         }
 
-        .nav-link:hover {
-            color: var(--orange);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-link::after {
+        .nav-link:after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--orange);
-            transition: width 0.3s;
+            transition: var(--transition);
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover:after,
+        .nav-link.active:after {
             width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--orange);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* Герой-баннер */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(10, 31, 61, 0.8), rgba(10, 31, 61, 0.9)), url('https://images.unsplash.com/photo-1618477247222-acb91a3e4b8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(10, 31, 61, 0.9), rgba(10, 31, 61, 0.95)), url('https://images.unsplash.com/photo-1618477388955-46ca8a8a8b4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             align-items: center;
-            text-align: center;
             color: var(--white);
-            padding: 2rem 0;
+            padding: 120px 0 80px;
+            position: relative;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin: 0 auto 3rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            max-width: 700px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--orange);
-            color: var(--white);
-            padding: 1.2rem 3rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .btn:hover {
-            background: #e05a2a;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.5);
-        }
-
-        .btn i {
-            margin-left: 8px;
-        }
-
-        /* Секции */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            font-size: 2.8rem;
-            color: var(--white);
-            margin-bottom: 3rem;
             text-align: center;
-            position: relative;
-            padding-bottom: 20px;
+            padding: 0 20px;
         }
 
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--orange);
-            border-radius: 2px;
+        .hero-title {
+            font-size: 64px;
+            margin-bottom: 30px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            animation: fadeIn 1.2s ease;
+        }
+
+        .hero-btn {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            width: 220px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 46px;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
         /* Услуги */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: all 0.3s;
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             height: 100%;
             display: flex;
             flex-direction: column;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .service-img {
             width: 100%;
-            height: 220px;
+            height: 260px;
             object-fit: cover;
             display: block;
         }
 
         .service-card-content {
-            padding: 1.8rem;
+            padding: 30px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--white);
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
         }
 
         .service-card p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
             flex: 1;
         }
 
         .service-icon {
-            font-size: 2.5rem;
+            font-size: 50px;
             color: var(--orange);
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
         /* О компании */
+        .about {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .about .section-title {
+            color: var(--white);
+        }
+
         .about-content {
             display: flex;
-            gap: 3rem;
+            gap: 60px;
             align-items: center;
         }
 
         .about-text {
             flex: 1;
-            font-size: 1.1rem;
+            font-size: 19px;
             line-height: 1.8;
         }
 
         .about-text p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .about-image {
             flex: 1;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            height: 450px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            height: 550px;
         }
 
         .about-image img {
@@ -284,317 +399,323 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s;
+            transition: transform 0.8s ease;
         }
 
-        .about-image img:hover {
+        .about-image:hover img {
             transform: scale(1.05);
         }
 
-        /* Этапы работы - ИСПРАВЛЕНИЕ: все в одну линию */
-        .steps-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            text-align: center;
+        /* Этапы работы */
+        .steps-container {
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: var(--orange);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
         }
 
         .step-card {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem 1.2rem;
-            border-radius: 12px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
             position: relative;
-            overflow: hidden;
-            flex: 1;
-            min-width: 180px;
-            max-width: 220px;
-        }
-
-        .step-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--orange);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .step-card:hover:before {
-            transform: scaleX(1);
+            width: 50%;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+            transition: var(--transition);
         }
 
         .step-card:hover {
             transform: translateY(-10px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-card:nth-child(odd) {
+            left: 0;
+        }
+
+        .step-card:nth-child(even) {
+            left: 50%;
+        }
+
+        .step-card::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--orange);
+            top: 40px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .step-card:nth-child(odd)::after {
+            right: -15px;
+        }
+
+        .step-card:nth-child(even)::after {
+            left: -15px;
         }
 
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--orange);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            position: absolute;
+            top: 30px;
+            font-size: 24px;
             font-weight: 700;
-            margin: 0 auto 1.2rem;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        .step-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--white);
-        }
-
-        /* Преимущества */
-        .advantages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .advantage-card {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .advantage-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .advantage-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
             color: var(--orange);
         }
 
-        .advantage-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--white);
+        .step-card:nth-child(odd) .step-number {
+            right: -70px;
+        }
+
+        .step-card:nth-child(even) .step-number {
+            left: -70px;
+        }
+
+        .step-content {
+            padding-left: 30px;
+        }
+
+        .step-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
         }
 
         /* Опыт */
-        .experience-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+        .experience-container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .experience-intro {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 3rem;
-            padding: 0 1rem;
-            font-size: 1.1rem;
+            margin: 0 auto 60px;
+            font-size: 19px;
             line-height: 1.8;
         }
 
-        .experience-list {
-            list-style: none;
-            padding-left: 1.5rem;
-            margin: 0 auto;
-            max-width: 800px;
-            font-size: 1.1rem;
-            column-count: 2;
-            column-gap: 3rem;
-        }
-
-        .experience-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-            break-inside: avoid;
-        }
-
-        .experience-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--orange);
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .experience-gallery {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            gap: 30px;
         }
 
-        .gallery-item {
-            position: relative;
-            border-radius: 12px;
+        .project-card {
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            height: 280px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
-        .gallery-item img {
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
             width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
-            display: block;
-            transition: transform 0.5s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .project-content {
+            padding: 25px;
         }
 
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 31, 61, 0.9);
-            padding: 15px;
-            color: var(--white);
-            font-weight: 500;
-            transform: translateY(100%);
-            transition: transform 0.3s;
+        .project-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
         }
 
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
+        .project-desc {
+            margin-bottom: 20px;
         }
 
         /* Лицензии */
-        .certificate-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        .certificates-slider {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
         }
 
-        .certificate-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
+        .swiper {
+            padding: 40px 0 70px;
+        }
+
+        .swiper-slide {
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            height: 400px;
+            box-shadow: var(--shadow);
+            height: 450px;
         }
 
-        .certificate-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .certificate-item img {
+        .swiper-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: var(--dark-blue);
+            opacity: 0.3;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--orange);
+            opacity: 1;
+        }
+
         /* Контакты */
-        #contacts {
-            background: #06152B;
-            padding: 5rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .contact-section {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
         }
 
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .requisites {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: 12px;
-            font-size: 15px;
-            line-height: 1.7;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .requisites h3 {
-            font-size: 1.8rem;
-            color: var(--orange);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .requisites p {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .map {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            height: 500px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
         }
 
         .contact-info {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        .contact-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 10px;
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
 
-        .contact-card i {
-            font-size: 2rem;
+        .contact-icon {
+            font-size: 28px;
             color: var(--orange);
-            margin-bottom: 1rem;
+            min-width: 50px;
         }
 
-        .contact-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
+        .contact-details h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .contact-details p {
+            font-size: 19px;
+            opacity: 0.9;
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            height: 500px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Футер */
         .footer {
-            background: #051025;
-            padding: 3rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #06152B;
+            padding: 60px 0 30px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .footer p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            color: var(--white);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            font-size: 14px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 16px;
         }
 
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .social-links a {
@@ -606,8 +727,8 @@
             background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             border-radius: 50%;
-            font-size: 1.2rem;
-            transition: all 0.3s;
+            font-size: 18px;
+            transition: var(--transition);
         }
 
         .social-links a:hover {
@@ -615,37 +736,68 @@
             transform: translateY(-5px);
         }
 
-        /* Адаптивность */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .experience-list {
-                column-count: 1;
-            }
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-            .steps-grid {
-                flex-wrap: wrap;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (max-width: 768px) {
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 54px;
+            }
+            
             .section {
-                padding: 3rem 0;
+                padding: 80px 0;
             }
             
             .section-title {
-                font-size: 2.2rem;
-                margin-bottom: 2.5rem;
+                font-size: 36px;
             }
             
-            .hero h1 {
-                font-size: 2.5rem;
+            .about-content {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav {
+                display: none;
             }
             
-            .hero p {
-                font-size: 1.2rem;
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 44px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
             }
             
             .about-content {
@@ -653,321 +805,528 @@
             }
             
             .about-image {
-                height: 350px;
-                margin-top: 2rem;
+                height: 450px;
+                width: 100%;
             }
             
-            .requisites {
-                padding: 1.8rem;
-                font-size: 14px;
+            .contact-container {
+                grid-template-columns: 1fr;
             }
             
-            .contact-card {
-                min-width: 100%;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .nav {
-                gap: 0.8rem;
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .step-card {
+                width: 100%;
+                left: 0 !important;
+                margin-left: 70px;
+            }
+            
+            .step-card:nth-child(even) {
+                left: 0;
+            }
+            
+            .step-card::after {
+                left: 15px !important;
+            }
+            
+            .step-card:nth-child(odd)::after {
+                right: auto;
+                left: 15px;
+            }
+            
+            .step-number {
+                left: -70px !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 50px;
+            }
+            
+            .feature-item {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 32px;
             }
         }
 
         @media (max-width: 576px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1.2rem;
+            .hero {
+                padding: 100px 0 60px;
             }
             
-            .logo-area {
-                align-items: center;
-                text-align: center;
-                margin-bottom: 1rem;
+            .hero-title {
+                font-size: 32px;
             }
             
-            .sro-number {
-                display: none;
-            }
-            
-            .nav {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
+            .hero-subtitle {
+                font-size: 18px;
             }
             
             .btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
+                padding: 14px 30px;
+                font-size: 16px;
             }
             
-            .section-title {
-                font-size: 1.8rem;
+            .section {
+                padding: 60px 0;
             }
             
-            .requisites {
-                padding: 1.5rem;
-                font-size: 13px;
-            }
-            
-            .contact-container {
-                gap: 2rem;
-            }
-            
-            .map {
-                height: 300px;
-            }
-
-            .steps-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .step-card {
-                max-width: 100%;
-                width: 100%;
+            .logo-title {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Шапка с навигацией -->
+    <!-- Шапка -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo-area">
-                    <div class="logo">
+                <div class="logo">
+                    <div class="logo-icon">
                         <i class="fas fa-mountain"></i>
-                        ГеоРу | Инженерные изыскания
                     </div>
-                    <div class="sro-number">Регистрационный номер члена саморегулируемой организации И-033-002369008010-1624</div>
+                    <div class="logo-text">
+                        <div class="logo-title">ГеоРу | Инженерные изыскания</div>
+                        <div class="logo-subtitle">Рег. № И-033-002369008010-1624</div>
+                    </div>
                 </div>
+                
                 <nav class="nav">
-                    <a href="#services" class="nav-link">Услуги</a>
+                    <a href="#services" class="nav-link active">Услуги</a>
                     <a href="#about" class="nav-link">О компании</a>
-                    <a href="#experience" class="nav-link">Опыт</a>
+                    <a href="#steps" class="nav-link">Этапы работы</a>
+                    <a href="#experience" class="nav-link">Наши проекты</a>
                     <a href="#certificate" class="nav-link">Лицензии</a>
                     <a href="#contacts" class="nav-link">Контакты</a>
                 </nav>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Основной контент -->
-    <main>
-        <!-- Герой-баннер -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Профессиональные инженерные изыскания</h1>
-                    <p>Полный комплекс услуг для строительства и проектирования с гарантией качества</p>
-                    <a href="#contacts" class="btn">Заказать консультацию <i class="fas fa-arrow-right"></i></a>
+    <!-- Герой-баннер -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Профессиональные инженерные изыскания</h1>
+                <p class="hero-subtitle">Полный комплекс услуг для строительства и проектирования с гарантией качества и соблюдением сроков</p>
+                <a href="#contacts" class="btn hero-btn">Заказать консультацию</a>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3 class="feature-title">15+ лет опыта</h3>
+                        <p>Работаем с 2010 года</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-list-check"></i>
+                        </div>
+                        <h3 class="feature-title">500+ проектов</h3>
+                        <p>Успешно реализовано</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-helmet-safety"></i>
+                        </div>
+                        <h3 class="feature-title">СРО-сертификация</h3>
+                        <p>Гарантия качества работ</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция "Услуги" -->
-        <section id="services" class="section">
-            <div class="container">
-                <h2 class="section-title">Наши услуги</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <!-- Исправлено: Добавлено фото для бурения -->
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3556e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геологические изыскания" class="service-img">
-                        <div class="service-card-content">
-                            <h3>Инженерно-геологические изыскания</h3>
-                            <p>Изучение грунтов для проектирования фундаментов и оценки рисков. Комплексное исследование геологических условий строительной площадки.</p>
-                        </div>
+    <!-- Услуги -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3556e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геологические изыскания" class="service-img">
+                    <div class="service-card-content">
+                        <h3>Инженерно-геологические изыскания</h3>
+                        <p>Комплексное исследование геологических условий строительной площадки, изучение грунтов для проектирования фундаментов и оценки геологических рисков. Бурение скважин, лабораторные исследования грунтов.</p>
                     </div>
-                    <div class="service-card">
-                        <!-- Исправлено: Добавлено фото для геофизических изысканий -->
-                        <img src="https://images.unsplash.com/photo-1621555107351-0b0e3c8b1e1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геофизические изыскания" class="service-img">
-                        <div class="service-card-content">
-                            <h3>Инженерно-геофизические изыскания</h3>
-                            <p>Анализ подземных коммуникаций, карстовых полостей и других геофизических особенностей с использованием современного оборудования.</p>
-                        </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1621555107351-0b0e3c8b1e1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геофизические изыскания" class="service-img">
+                    <div class="service-card-content">
+                        <h3>Инженерно-геофизические изыскания</h3>
+                        <p>Исследование геологического строения массива горных пород, выявление карстовых пустот, определение уровня грунтовых вод и анализ подземных коммуникаций с использованием современных геофизических методов.</p>
                     </div>
-                    <div class="service-card">
-                        <!-- Исправлено: Добавлено фото для геодезических изысканий -->
-                        <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геодезические изыскания" class="service-img">
-                        <div class="service-card-content">
-                            <h3>Инженерно-геодезические изыскания</h3>
-                            <p>Топографическая съемка и создание геодезических планов для строительства с высокой точностью измерений.</p>
-                        </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Инженерно-геодезические изыскания" class="service-img">
+                    <div class="service-card-content">
+                        <h3>Инженерно-геодезические изыскания</h3>
+                        <p>Топографическая съемка местности, создание геодезических планов высокой точности, разбивочные работы, исполнительные съемки и мониторинг деформаций сооружений с использованием современного оборудования.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция "О компании" -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">О компании</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>ООО «ГЕОРУ» — профессиональная компания в области инженерных изысканий. Наша команда состоит из высококвалифицированных специалистов с многолетним опытом работы на крупнейших объектах России.</p>
-                        <p>Мы используем современное оборудование и методики, что позволяет нам гарантировать высокое качество работ и соблюдение сроков. Наша миссия - обеспечивать безопасность строительства через точные геологические исследования.</p>
-                        <p>С 2010 года мы успешно реализовали более 500 проектов различной сложности. Наши клиенты - крупнейшие строительные компании и государственные организации.</p>
-                        <div class="contact-info">
-                            <div class="contact-card">
-                                <i class="fas fa-medal"></i>
-                                <h4>15 лет</h4>
-                                <p>опыта работы</p>
-                            </div>
-                            <div class="contact-card">
-                                <i class="fas fa-project-diagram"></i>
-                                <h4>500+</h4>
-                                <p>реализованных проектов</p>
-                            </div>
-                            <div class="contact-card">
-                                <i class="fas fa-users"></i>
-                                <h4>50+</h4>
-                                <p>квалифицированных специалистов</p>
-                            </div>
+    <!-- О компании -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">О компании</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>ООО «ГЕОРУ» — ведущая компания в области инженерных изысканий, основанная в 2010 году. Наша команда состоит из высококвалифицированных специалистов с многолетним опытом работы на крупнейших инфраструктурных объектах России.</p>
+                    
+                    <p>Мы специализируемся на полном комплексе инженерных изысканий для строительства, используя современное оборудование и передовые методики. Наши услуги включают геологические, геодезические, геофизические и экологические исследования.</p>
+                    
+                    <p>Наша миссия — обеспечение безопасности и долговечности строительных объектов через точные и достоверные инженерные изыскания. Мы гордимся тем, что наши исследования легли в основу многих знаковых объектов по всей России.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">15+</div>
+                            <div class="stat-title">лет на рынке</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-title">проектов</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-title">специалистов</div>
                         </div>
                     </div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Наша команда">
-                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Наша команда">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция "Этапы работы" -->
-        <section id="steps" class="section" style="background: #0c2545;">
-            <div class="container">
-                <h2 class="section-title">Этапы работы</h2>
-                <div class="steps-grid">
+    <!-- Этапы работы -->
+    <section id="steps" class="section">
+        <div class="container">
+            <h2 class="section-title">Этапы работы</h2>
+            <div class="steps-container">
+                <div class="timeline">
                     <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h3>Заявка</h3>
-                        <p>Вы оставляете заявку на сайте или по телефону</p>
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Консультация и заявка</h3>
+                            <p>Вы оставляете заявку на сайте или по телефону. Наш специалист проводит консультацию, уточняет детали проекта и формирует техническое задание.</p>
+                        </div>
                     </div>
+                    
                     <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h3>Консультация</h3>
-                        <p>Наш специалист уточняет детали и формирует ТЗ</p>
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Заключение договора</h3>
+                            <p>Мы подготавливаем коммерческое предложение, согласовываем сроки выполнения работ и заключаем официальный договор.</p>
+                        </div>
                     </div>
+                    
                     <div class="step-card">
-                        <div class="step-number">3</div>
-                        <h3>Договор</h3>
-                        <p>Заключаем договор и согласовываем сроки</p>
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Полевые работы</h3>
+                            <p>Наши специалисты выезжают на объект и проводят необходимые изыскания с использованием современного оборудования и методик.</p>
+                        </div>
                     </div>
+                    
                     <div class="step-card">
-                        <div class="step-number">4</div>
-                        <h3>Выполнение</h3>
-                        <p>Проводим необходимые изыскания и исследования</p>
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>Лабораторные исследования</h3>
+                            <p>Отобранные образцы грунтов, воды и других материалов направляются в нашу аккредитованную лабораторию для проведения анализов.</p>
+                        </div>
                     </div>
+                    
                     <div class="step-card">
-                        <div class="step-number">5</div>
-                        <h3>Отчет</h3>
-                        <p>Подготавливаем и передаем технический отчет</p>
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <h3>Подготовка отчета</h3>
+                            <p>На основе полученных данных мы готовим технический отчет, соответствующий всем нормативным требованиям, и передаем его заказчику.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция "Опыт" -->
-        <section id="experience" class="section" style="background: #0c2545;">
-            <div class="container">
-                <h2 class="section-title">Наш опыт</h2>
-                <div class="experience-content">
-                    <div class="experience-intro">
-                        <p>Сотрудники ООО «ГЕОРУ» принимали участие в выполнении инженерных изысканий для строительства следующих объектов:</p>
+    <!-- Наши проекты -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Наши проекты</h2>
+            <div class="experience-container">
+                <div class="experience-intro">
+                    <p>За годы работы наши специалисты принимали участие в изысканиях для строительства крупнейших инфраструктурных объектов России. Вот некоторые из наших ключевых проектов:</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1653494370309-1e5c1d8f9e1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Керченский мост" class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Керченский мост</h3>
+                            <p class="project-desc">Комплексные инженерно-геологические и геофизические изыскания для проектирования и строительства транспортного перехода через Керченский пролив.</p>
+                        </div>
                     </div>
-                    <ul class="experience-list">
-                        <li>Керченский мост</li>
-                        <li>Олимпиада-2014</li>
-                        <li>Магистральный газопровод «Сила Сибири-2»</li>
-                        <li>Магистральный газопровод «Южный поток»</li>
-                        <li>Магистральный газопровод «Волхов - Мурманск»</li>
-                        <li>Автомобильная дорога М-12 «Москва - Казань»</li>
-                        <li>Автомобильная дорога М-4 «Дон» (Восточный обход г.Ростова-на-Дону)</li>
-                        <li>Автомобильная дорога «Таврида» (Крым)</li>
-                        <li>Высокоскоростная железнодорожная магистраль Москва – Санкт-Петербург (ВСЖМ-1)</li>
-                        <li>Московский центральный диаметр МЦД-2</li>
-                        <li>Байкало-Амурская железнодорожная магистраль (БАМ-2)</li>
-                        <li>Северный широтный ход (железнодорожная магистраль СШХ)</li>
-                        <li>Совмещенная автомобильная и железная дорога Адлер – курорт «Альпика-Сервис»</li>
-                        <li>Автомобильная дорога Дублер Курортного проспекта в г.Сочи</li>
-                        <li>Заводы Coca-Cola, Тагаз, Тагмет, Тантк им.Г.М.Бериева, Красный котельщик, Нэвз</li>
-                        <li>Гипермаркеты Мега, Metro, OBI, IKEA, Leroy Merlin, Ашан, Лента, О`Кей, Золотой Вавилон, и другие</li>
-                    </ul>
-                    <div class="experience-gallery">
-                        <div class="gallery-item">
-                            <!-- Исправлено: Добавлено фото Керченского моста -->
-                            <img src="https://images.unsplash.com/photo-1653494370309-1e5c1d8f9e1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Керченский мост">
-                            <div class="gallery-caption">Керченский мост</div>
+                    
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1593111774240-d529f12e7e5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Сила Сибири-2" class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Магистральный газопровод «Сила Сибири-2»</h3>
+                            <p class="project-desc">Инженерные изыскания на трассе магистрального газопровода протяженностью 1 200 км в сложных природно-климатических условиях.</p>
                         </div>
-                        <div class="gallery-item">
-                            <!-- Исправлено: Заменено фото для "Сила Сибири-2" -->
-                            <img src="https://images.unsplash.com/photo-1593111774240-d529f12e7e5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Магистральный газопровод">
-                            <div class="gallery-caption">Магистральный газопровод «Сила Сибири-2»</div>
-                        </div>
-                        <div class="gallery-item">
-                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Проект Олимпиада-2014">
-                            <div class="gallery-caption">Олимпийские объекты Сочи-2014</div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Олимпиада-2014" class="project-img">
+                        <div class="project-content">
+                            <h3 class="project-title">Олимпийские объекты Сочи-2014</h3>
+                            <p class="project-desc">Комплексные инженерные изыскания для строительства олимпийских объектов в горной местности с учетом сложных геологических условий.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция "Контакты" -->
-        <section id="contacts" class="section">
-            <div class="container">
-                <h2 class="section-title">Контакты</h2>
-                <div class="contact-container">
-                    <div class="requisites">
-                        <h3>Наши контакты</h3>
-                        <div class="contact-info">
-                            <div class="contact-card">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <h4>Адрес</h4>
-                                <p>625032 Тюменская обл., г. Тюмень, ул. Тимирязева, д.10, оф. 11</p>
-                            </div>
-                            <div class="contact-card">
-                                <i class="fas fa-phone"></i>
-                                <h4>Телефон</h4>
-                                <p>+79222603732</p>
-                            </div>
-                            <div class="contact-card">
-                                <i class="fas fa-envelope"></i>
-                                <h4>Email</h4>
-                                <p>rugeo@inbox.ru</p>
-                            </div>
+    <!-- Лицензии -->
+    <section id="certificate" class="section">
+        <div class="container">
+            <h2 class="section-title">Наши лицензии и сертификаты</h2>
+            <div class="certificates-slider">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Свидетельство СРО">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1622542796254-5b9c46ab0d2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Лицензия">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1600857062241-98c0cac7100d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Аттестат">
                         </div>
                     </div>
-                    <div class="map">
-                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3e4c8b7d9c6d2c0c8c5b8b5b5b5b5b5b5b5b5b5&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Адрес</h3>
+                            <p>625032, Тюменская обл., г. Тюмень, ул. Тимирязева, д.10, оф. 11</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Телефон</h3>
+                            <p>+7 (922) 260-37-32</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>rugeo@inbox.ru</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Режим работы</h3>
+                            <p>Пн-Пт: 9:00 - 18:00<br>Сб-Вс: выходной</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3e4c8b7d9c6d2c0c8c5b8b5b5b5b5b5b5b5b5b5&amp;source=constructor" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Футер -->
     <footer class="footer">
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
-                <i class="fas fa-mountain"></i>
-                ГеоРу | Инженерные изыскания
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <p>ООО «ГЕОРУ» - профессиональные инженерные изыскания с 2010 года. Мы обеспечиваем точные и надежные исследования для строительных проектов любой сложности.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Услуги</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Геологические изыскания</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Геодезические изыскания</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Геофизические изыскания</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Экологические исследования</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Гидрометеорологические изыскания</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Навигация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Услуги</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> О компании</a></li>
+                        <li><a href="#steps"><i class="fas fa-chevron-right"></i> Этапы работы</a></li>
+                        <li><a href="#experience"><i class="fas fa-chevron-right"></i> Наши проекты</a></li>
+                        <li><a href="#contacts"><i class="fas fa-chevron-right"></i> Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Тюмень, ул. Тимирязева, 10</li>
+                        <li><i class="fas fa-phone"></i> +7 (922) 260-37-32</li>
+                        <li><i class="fas fa-envelope"></i> rugeo@inbox.ru</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00-18:00</li>
+                    </ul>
+                </div>
             </div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-vk"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+            
+            <div class="footer-bottom">
+                <p>ООО «ГЕОРУ» | Регистрационный номер члена саморегулируемой организации И-033-002369008010-1624</p>
+                <p>&copy; 2023 Все права защищены</p>
             </div>
-            <p>ООО «ГЕОРУ» - профессиональные инженерные изыскания с 2010 года</p>
-            <p>Регистрационный номер члена саморегулируемой организации И-033-002369008010-1624</p>
-            <p>© 2023 Все права защищены</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Инициализация слайдера
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
+            }
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Мобильное меню
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('.nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Активация пунктов меню при скролле
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
